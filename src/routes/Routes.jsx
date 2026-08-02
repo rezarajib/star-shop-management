@@ -12,6 +12,26 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
+    loader: async () => {
+      // ১. LocalStorage 
+      const savedProducts = localStorage.getItem('shop_products');
+      let initialProducts = [];
+
+      if (savedProducts) {
+        initialProducts = JSON.parse(savedProducts);
+      } else {
+        // fetch 
+        const res = await fetch('/productsData.json');
+        initialProducts = await res.json();
+        localStorage.setItem('shop_products', JSON.stringify(initialProducts));
+      }
+
+      // ২. Income 
+      const savedIncome = localStorage.getItem('shop_income');
+      const initialIncome = savedIncome ? Number(savedIncome) : 0;
+
+      return { initialProducts, initialIncome };
+    },
     children: [
       {
         path: '/',
