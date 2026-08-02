@@ -3,25 +3,40 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   const getLinkStyle = ({ isActive }) =>
-    `btn btn-ghost btn-sm text-base-content hover:bg-base-300 transition-colors ${
-      isActive ? 'btn-active btn-neutral font-bold text-primary' : 'font-semibold'
+    `btn btn-sm rounded-full transition-all duration-300 gap-2 border-0 ${
+      isActive
+        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-amber-500/20 font-bold scale-105'
+        : 'btn-ghost text-slate-300 hover:text-white hover:bg-slate-800/80 font-medium'
     }`;
 
   return (
-    <nav className="navbar bg-base-200 shadow-md rounded-box px-4 my-2 flex justify-center">
-      <div className="flex gap-2 sm:gap-4 flex-wrap justify-center">
+    <nav className="w-full flex justify-center py-1">
+      <div className="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-full px-3 py-1.5 shadow-lg flex items-center justify-center gap-1 sm:gap-2 flex-wrap max-w-fit">
+        
+        {/* Home Link */}
         <NavLink to="/" className={getLinkStyle}>
-          হোম (Home)
+          <span>🏠</span>
+          <span>হোম (Home)</span>
         </NavLink>
+
+        {/* Products Link */}
         <NavLink to="/products" className={getLinkStyle}>
-          পণ্যসমূহ (Products)
+          <span>🛍️</span>
+          <span>পণ্যসমূহ (Products)</span>
         </NavLink>
+
+        {/* Inventory Link */}
         <NavLink to="/inventory" className={getLinkStyle}>
-          ইনভেন্টরি (Inventory)
+          <span>📦</span>
+          <span>ইনভেন্টরি (Inventory)</span>
         </NavLink>
+
+        {/* Cash Counter Link */}
         <NavLink to="/cash" className={getLinkStyle}>
-          ক্যাশ হিসাব (Cash)
+          <span>💵</span>
+          <span>ক্যাশ হিসাব (Cash)</span>
         </NavLink>
+
       </div>
     </nav>
   );
