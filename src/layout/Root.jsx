@@ -4,18 +4,18 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
 function Root() {
-  // Router loader থেকে প্রাথমিক ডাটা রিসিভ করা
+  // Router loader 
   const { initialProducts, initialIncome } = useLoaderData();
 
   const [products, setProducts] = useState(initialProducts);
   const [dailyIncome, setDailyIncome] = useState(initialIncome);
 
-  // প্রোডাক্টস আপডেট হলে LocalStorage আপডেট হবে
+  //  LocalStorage 
   useEffect(() => {
     localStorage.setItem('shop_products', JSON.stringify(products));
   }, [products]);
 
-  // ইনকাম আপডেট হলে LocalStorage আপডেট হবে
+  //  LocalStorage 
   useEffect(() => {
     localStorage.setItem('shop_income', dailyIncome.toString());
   }, [dailyIncome]);
